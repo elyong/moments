@@ -1,0 +1,15 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" ></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="userexecute">
+    <text class="intro">记录生活的点点滴滴，以后细细品味</text>
+    <button type="primary" class="execute" bindtap="addNavi">记录生活新鲜事</button>
+    <button plain="true" class="execute" bindtap="contentNavi">我的丰富过往</button>
+  </view>
+</view>

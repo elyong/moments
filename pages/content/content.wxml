@@ -1,0 +1,14 @@
+<!--pages/content/content.wxml-->
+<view class="content">
+  <block wx:for="{{contentList}}" wx:for-item="item" wx:for-index="index" wx:key="num">
+    <text class="title">{{item.title}}</text>
+    <block wx:for="{{item.imageFilePath}}" wx:for-item="pic" wx:for-index="index" wx:key="*this">
+      <image class="showImage" mode="aspectFit" src="{{pic}}"></image>
+    </block>
+    <view class="replayButton" hidden="{{index==hide?true:false}}" bindtap="recordReplay" data-index="{{index}}" data-num="{{item.num}}"></view>
+    <view class="stopButton" hidden="{{index==hide?false:true}}" bindtap="recordReplayStop" data-index="{{index}}" data-num="{{item.num}}"></view>
+    <map latitude='{{item.latitude}}' longitude='{{item.longitude}}' markers='{{markers[index]}}'></map>
+    <view class="line"></view>
+  </block>
+</view>
+<view class="{{isIpx?'fix-iphonex-button':''}}"></view>

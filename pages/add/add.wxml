@@ -1,0 +1,54 @@
+<!--pages/add/add.wxml-->
+<wxs src="../wxs/data.wxs" module="data"></wxs>
+<view class="add">
+  <form class="addform"  bindsubmit="formSubmit">
+    <view class="addBlock">
+      <text class="addTitle">故事的标题</text>
+      <view class="line"></view>
+      <input name="title" class="addTitleInput" placeholder='请输入故事标题' bindinput="titleChange" value="{{title}}"></input>
+    </view>
+    <view class="addBlock">
+      <text class="addTitle">故事的图片</text>
+      <view class="line"></view>
+      <view class="imageAndPlus">
+        <block class="imageList" wx:for="{{imageUrlList}}" wx:for-item="item" wx:for-index="index" wx:key="*this">
+          <image class= "showImage" mode="aspectFill" src="{{item}}" bindtap="previewImage" data-index="{{index}}"></image>
+        </block>
+        <view class="plusButton" bindtap='chooseImage'>
+          <text class="plusButtonText">+</text>
+        </view>
+      </view>
+    </view>
+    <view class="addBlock">
+      <text class="addTitle">故事的声音</text>
+      <view class="line"></view>
+      <view class="record">
+        <block wx:if="{{recordStatus==1}}">
+          <view class="recordButton" bindtap="recordStart"></view>
+        </block>
+        <block wx:elif="{{recordStatus==2}}">
+          <text>{{data.format(minutes,seconds)}}</text>
+          <view class="stopRecord" bindtap="recordStop"></view>
+        </block>
+        <block wx:elif="{{recordStatus==3}}">
+          <text>长度：{{data.format(minutes,seconds)}}</text>
+          <view class="recordOperation">
+            <view class="replayButton" hidden="{{playOrStop}}" bindtap="recordReplay"></view>
+            <view class="stopButton" hidden="{{!playOrStop}}" bindtap="recordReplayStop"></view>
+            <view class="uninstallButton" bindtap="recordUninstall"></view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="addBlock">
+      <text class="addTitle">故事的地点</text>
+      <view class="line"></view>
+      <view class="address">{{address}}</view>
+      <view class="chooseLocation" bindtap="chooseLocation"></view>
+    </view>
+    <button formType="submit" class="submit" type='primary'>提交{{notFull}}</button>
+  </form>
+</view>
+
+<view class="line"></view>
+<view class="{{isIpx?'fix-iphonex-button':''}}"></view>

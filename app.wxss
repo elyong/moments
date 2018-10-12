@@ -1,0 +1,17 @@
+/**app.wxss**/
+page{
+  background-color:rgba(128, 128, 128, 0.116)
+}
+.fix-iphonex-button{
+  bottom:68rpx!important;
+}
+.fix-iphonex-button::after{
+  content:'';
+  text-align: center;
+  font-size:24rpx;
+  line-height: 68rpx;
+  position: fixed;
+  bottom:0!important;
+  height: 68rpx!important;
+  width:100%;
+}
